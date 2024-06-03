@@ -4,10 +4,18 @@ import Link from 'next/link';
 
 const Index = () => {
   return (
-    <div className="flex">
-      <NavPanel />
-      <MainH1 title="Edificios" />
-    </div>
+      <>
+      <section className='flex'>
+        <NavPanel />
+        <div>
+          <MainH1 title="Edificios"/>
+          <div className='mt-5'>
+            <Link href="/" className="bg-orange-600 p-2 text-white font-montserrat text-center rounded-lg ml-24">Crear</Link>
+          </div>        
+        </div>
+      </section>
+      
+      </>
   );
 }
 

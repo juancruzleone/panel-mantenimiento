@@ -9,15 +9,6 @@ const NavPanel = () => {
                 <li>
                     <Link href="/" className='font-montserrat text-xl'>Edificios</Link>
                 </li>
-                <li>
-                    <Link href="/" className='font-montserrat text-xl'></Link>
-                </li>
-                <li>
-                    <Link href="/" className='font-montserrat text-xl'></Link>
-                </li>
-                <li>
-                    <Link href="/" className='font-montserrat text-xl'></Link>
-                </li>
             </ul>
         </nav>
         </>
