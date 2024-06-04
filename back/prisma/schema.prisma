@@ -1,0 +1,51 @@
+// Este es tu archivo de esquema de Prisma
+// Aprende más sobre él en la documentación: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+model Edificio {
+  id            Int      @id @default(autoincrement())
+  nombre        String
+  direccion     String
+  codigoPostal  String
+  ciudad        String
+  provincia     String
+
+  instalaciones Instalacion[]
+}
+
+model Instalacion {
+  id                    Int      @id @default(autoincrement())
+  nombre                String
+  tipoInstalacion       String
+  edificio              Edificio  @relation(fields: [edificioId], references: [id])
+  edificioId            Int
+  propietario           Propietario  @relation(fields: [propietarioId], references: [id])
+  propietarioId         Int
+
+  dispositivos Dispositivo[]
+}
+
+model Propietario {
+  id             Int            @id @default(autoincrement())
+  nombre         String
+  instalaciones  Instalacion[]
+}
+
+
+model Dispositivo {
+  id            Int      @id @default(autoincrement())
+  nombre        String
+  descripcion   String
+  codigoQR      String   @unique
+  instalacion   Instalacion  @relation(fields: [instalacionId], references: [id])
+  instalacionId Int
+}
+

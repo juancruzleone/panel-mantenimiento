@@ -16,6 +16,9 @@ const Index = () => {
             <input type="text" className='p-3 rounded-full text-black font-montserrat' placeholder='Búsca por titulo'/>     
           </div>  
         </div>
+        <div>
+          
+        </div>
       </main>
       </>
   );
