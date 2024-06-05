@@ -1,9 +1,8 @@
-import { Router } from 'express'
-import * as controllers from '../controllers/controller.api.edificios'
+import { Router } from 'express';
 
 
-const route = Router()
+const router = Router();
 
+router.post('/edificios', );
 
-
-export default route
+export default router;
