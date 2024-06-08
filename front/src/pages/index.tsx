@@ -4,6 +4,7 @@ import MainH1 from '../components/MainH1';
 import Link from 'next/link';
 import DeleteModal from '../components/DeleteModal';
 import CreateModal from '../components/CreateModal';
+import EditModal from '../components/EditModal';
 
 interface Edificio {
   id: number;
@@ -20,6 +21,7 @@ const Index = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [currentEdificio, setCurrentEdificio] = useState<Edificio | null>(null);
 
   useEffect(() => {
@@ -72,6 +74,32 @@ const Index = () => {
       .catch(error => console.error('Error al crear el edificio:', error));
   };
 
+  const handleEditClick = (edificio: Edificio) => {
+    setCurrentEdificio(edificio);
+    setIsEditModalOpen(true);
+  };
+
+  const handleEdit = (id: number, data: Edificio) => {
+    fetch(`http://localhost:2024/api/edificios/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => response.json())
+      .then(updatedEdificio => {
+        setEdificios(
+          edificios.map(edificio =>
+            edificio.id === updatedEdificio.id ? updatedEdificio : edificio
+          )
+        );
+        setIsEditModalOpen(false);
+        setCurrentEdificio(null);
+      })
+      .catch(error => console.error('Error al editar el edificio:', error));
+  };
+
   const filteredEdificios = edificios.filter(edificio =>
     edificio.nombre.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -110,7 +138,12 @@ const Index = () => {
                   </h2>
                   <div className='font-montserrat mt-7'>
                     <button className='bg-black text-white p-1 rounded-lg mr-2'>Ver más</button>
-                    <button className='bg-blue-500 text-white p-1 rounded-lg mr-2'>Editar</button>
+                    <button 
+                      className='bg-blue-500 text-white p-1 rounded-lg mr-2'
+                      onClick={() => handleEditClick(edificio)}
+                    >
+                      Editar
+                    </button>
                     <button 
                       className='bg-red-500 text-white p-1 rounded-lg mr-2'
                       onClick={() => handleDeleteClick(edificio)}
@@ -134,6 +167,13 @@ const Index = () => {
         isOpen={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
         onCreate={handleCreate}
+        entityType="Edificio"
+      />
+      <EditModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        onEdit={handleEdit}
+        entity={currentEdificio}
         entityType="Edificio"
       />
     </>
