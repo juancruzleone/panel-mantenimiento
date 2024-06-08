@@ -43,3 +43,7 @@ body {
 .bg-contenedor{
   background-color: #252525;
 }
+
+.radius-contenedor{
+  border-radius: 20px;
+}
