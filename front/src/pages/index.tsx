@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavPanel from '../components/NavPanel';
 import MainH1 from '../components/MainH1';
 import Link from 'next/link';
+import DeleteModal from '../components/DeleteModal';
 
 interface Edificio {
   id: number;
@@ -16,6 +17,8 @@ const Index = () => {
   const [edificios, setEdificios] = useState<Edificio[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [currentEdificio, setCurrentEdificio] = useState<Edificio | null>(null);
 
   useEffect(() => {
     fetch('http://localhost:2024/api/edificios')
@@ -32,6 +35,23 @@ const Index = () => {
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
+  };
+
+  const handleDeleteClick = (edificio: Edificio) => {
+    setCurrentEdificio(edificio);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    if (currentEdificio) {
+      fetch(`http://localhost:2024/api/edificios/${currentEdificio.id}`, { method: 'DELETE' })
+        .then(() => {
+          setEdificios(edificios.filter(e => e.id !== currentEdificio.id));
+          setIsDeleteModalOpen(false);
+          setCurrentEdificio(null);
+        })
+        .catch(error => console.error('Error al eliminar el edificio:', error));
+    }
   };
 
   const filteredEdificios = edificios.filter(edificio =>
@@ -68,7 +88,12 @@ const Index = () => {
                   <div className='font-montserrat mt-7'>
                     <button className='bg-black text-white p-1 rounded-lg mr-2'>Ver más</button>
                     <button className='bg-blue-500 text-white p-1 rounded-lg mr-2'>Editar</button>
-                    <button className='bg-red-500 text-white p-1 rounded-lg mr-2'>Eliminar</button>
+                    <button 
+                      className='bg-red-500 text-white p-1 rounded-lg mr-2'
+                      onClick={() => handleDeleteClick(edificio)}
+                    >
+                      Eliminar
+                    </button>
                   </div>
                 </div>
               ))}
@@ -76,6 +101,12 @@ const Index = () => {
           )}
         </div>
       </main>
+      <DeleteModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onConfirm={handleDeleteConfirm}
+        itemName={currentEdificio ? currentEdificio.nombre : ''}
+      />
     </>
   );
 };
