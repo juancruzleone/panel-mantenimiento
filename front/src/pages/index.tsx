@@ -3,6 +3,7 @@ import NavPanel from '../components/NavPanel';
 import MainH1 from '../components/MainH1';
 import Link from 'next/link';
 import DeleteModal from '../components/DeleteModal';
+import CreateModal from '../components/CreateModal';
 
 interface Edificio {
   id: number;
@@ -18,6 +19,7 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [currentEdificio, setCurrentEdificio] = useState<Edificio | null>(null);
 
   useEffect(() => {
@@ -54,6 +56,22 @@ const Index = () => {
     }
   };
 
+  const handleCreate = (newEdificio: Omit<Edificio, 'id'>) => {
+    fetch('http://localhost:2024/api/edificios', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newEdificio),
+    })
+      .then(response => response.json())
+      .then(data => {
+        setEdificios([...edificios, data]);
+        setIsCreateModalOpen(false);
+      })
+      .catch(error => console.error('Error al crear el edificio:', error));
+  };
+
   const filteredEdificios = edificios.filter(edificio =>
     edificio.nombre.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -65,13 +83,18 @@ const Index = () => {
         <div className='flex-grow p-6'>
           <MainH1 title="Edificios" />
           <div className='mt-7'>
-            <Link href="/" className="bg-boton p-2 text-white font-montserrat text-center rounded-lg">Crear</Link>
+            <button
+              onClick={() => setIsCreateModalOpen(true)}
+              className="bg-boton p-2 text-white font-montserrat text-center rounded-lg"
+            >
+              Crear Edificio
+            </button>
           </div>
           <div className='mt-10'>
             <input 
               type="text" 
               className='p-3.5 rounded-full text-black font-montserrat w-[100%]' 
-              placeholder='Busca por titulo' 
+              placeholder='Busca por título' 
               value={searchTerm}
               onChange={handleSearchChange}
             />
@@ -106,6 +129,12 @@ const Index = () => {
         onClose={() => setIsDeleteModalOpen(false)}
         onConfirm={handleDeleteConfirm}
         itemName={currentEdificio ? currentEdificio.nombre : ''}
+      />
+      <CreateModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onCreate={handleCreate}
+        entityType="Edificio"
       />
     </>
   );
