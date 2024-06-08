@@ -137,7 +137,9 @@ const Index = () => {
                     {edificio.nombre.charAt(0).toLocaleUpperCase() + edificio.nombre.slice(1)}
                   </h2>
                   <div className='font-montserrat mt-7'>
-                    <button className='bg-black text-white p-1 rounded-lg mr-2'>Ver más</button>
+                    <Link href={`/detalle/${edificio.id}`} passHref>
+                      <button className='bg-black text-white p-1 rounded-lg mr-2'>Ver más</button>
+                    </Link>
                     <button 
                       className='bg-blue-500 text-white p-1 rounded-lg mr-2'
                       onClick={() => handleEditClick(edificio)}
