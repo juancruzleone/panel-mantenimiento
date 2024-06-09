@@ -101,7 +101,8 @@ const Index = () => {
   };
 
   const filteredEdificios = edificios.filter(edificio =>
-    edificio.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+    edificio.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    edificio.direccion.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -122,7 +123,7 @@ const Index = () => {
             <input 
               type="text" 
               className='p-3.5 rounded-full text-black font-montserrat w-[100%]' 
-              placeholder='Busca por título' 
+              placeholder='Busca por título o dirección' 
               value={searchTerm}
               onChange={handleSearchChange}
             />
