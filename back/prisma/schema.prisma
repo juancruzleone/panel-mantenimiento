@@ -27,18 +27,10 @@ model Instalacion {
   tipoInstalacion       String
   edificio              Edificio  @relation(fields: [edificioId], references: [id])
   edificioId            Int
-  propietario           Propietario  @relation(fields: [propietarioId], references: [id])
-  propietarioId         Int
+  cliente               String
 
   dispositivos Dispositivo[]
 }
-
-model Propietario {
-  id             Int            @id @default(autoincrement())
-  nombre         String
-  instalaciones  Instalacion[]
-}
-
 
 model Dispositivo {
   id            Int      @id @default(autoincrement())

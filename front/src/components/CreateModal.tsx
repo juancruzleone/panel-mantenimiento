@@ -9,7 +9,7 @@ interface CreateModalProps {
 
 const initialFormState = {
   Edificio: { nombre: '', direccion: '', codigoPostal: '', ciudad: '', provincia: '' },
-  Instalacion: { nombre: '', tipoInstalacion: '', edificioId: '', propietarioId: '' },
+  Instalacion: { nombre: '', tipoInstalacion: '', edificioId: '', cliente: '' },
   Dispositivo: { nombre: '', descripcion: '', codigoQR: '', instalacionId: '' },
 };
 
@@ -118,17 +118,17 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
             <input
               type="number"
               name="edificioId"
-              placeholder="ID Edificio"
+              placeholder="Escribe el id del edificio"
               value={formState.edificioId}
               onChange={handleChange}
               className="mb-2 p-2 border rounded text-black font-montserrat"
             />
-            <label className="mb-1 font-bold">ID Propietario</label>
+            <label className="mb-1 font-bold">Nombre del cliente</label>
             <input
-              type="number"
-              name="propietarioId"
-              placeholder="ID Propietario"
-              value={formState.propietarioId}
+              type="string"
+              name="cliente"
+              placeholder="Escribe nombre del cliente"
+              value={formState.cliente}
               onChange={handleChange}
               className="mb-2 p-2 border rounded text-black font-montserrat"
             />

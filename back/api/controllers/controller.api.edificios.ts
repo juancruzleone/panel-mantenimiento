@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const getAllEdificios = async (req: Request, res: Response) => {
+const getAllEdificios = async (req: Request, res: Response) => {
   try {
     const edificios = await prisma.edificio.findMany();
     res.json(edificios);
@@ -13,7 +13,7 @@ export const getAllEdificios = async (req: Request, res: Response) => {
   }
 };
 
-export const getEdificioById = async (req: Request, res: Response) => {
+const getEdificioById = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
     const edificio = await prisma.edificio.findUnique({
@@ -31,7 +31,7 @@ export const getEdificioById = async (req: Request, res: Response) => {
   }
 };
 
-export const createEdificio = async (req: Request, res: Response) => {
+const createEdificio = async (req: Request, res: Response) => {
   const { nombre, direccion, codigoPostal, ciudad, provincia } = req.body;
   try {
     const newEdificio = await prisma.edificio.create({
@@ -50,7 +50,7 @@ export const createEdificio = async (req: Request, res: Response) => {
   }
 };
 
-export const updateEdificio = async (req: Request, res: Response) => {
+const updateEdificio = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { nombre, direccion, codigoPostal, ciudad, provincia } = req.body;
   try {
@@ -73,7 +73,7 @@ export const updateEdificio = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteEdificio = async (req: Request, res: Response) => {
+const deleteEdificio = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
     await prisma.edificio.delete({
@@ -87,3 +87,11 @@ export const deleteEdificio = async (req: Request, res: Response) => {
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
+
+export{
+  getAllEdificios,
+  getEdificioById,
+  createEdificio,
+  updateEdificio,
+  deleteEdificio
+}
