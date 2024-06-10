@@ -125,7 +125,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
             />
             <label className="mb-1 font-bold">Nombre del cliente</label>
             <input
-              type="string"
+              type="text"
               name="cliente"
               placeholder="Escribe nombre del cliente"
               value={formState.cliente}
@@ -137,49 +137,51 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
       case 'Dispositivo':
         return (
           <>
-            <label className="mb-1 font-montserrat font-bold">Nombre</label>
+            <label className="mb-1 font-montserrat">Nombre</label>
             <input
               type="text"
               name="nombre"
               placeholder="Nombre"
               value={formState.nombre}
               onChange={handleChange}
-              className="mb-2 p-2 border rounded text-black font-montserrat"
+              className="mb-4 p-2 border rounded text-black font-montserrat"
             />
-            <label className="mb-1 font-montserrat font-bold">Descripción</label>
+            <label className="mb-1 font-montserrat">Descripción</label>
             <input
               type="text"
               name="descripcion"
               placeholder="Descripción"
               value={formState.descripcion}
               onChange={handleChange}
-              className="mb-2 p-2 border rounded text-black font-montserrat"
+              className="mb-4 p-2 border rounded text-black font-montserrat"
             />
-            <label className="mb-1 font-montserrat font-bold">Código QR</label>
+            <label className="mb-1 font-montserrat">Código QR</label>
             <input
               type="text"
               name="codigoQR"
               placeholder="Código QR"
               value={formState.codigoQR}
               onChange={handleChange}
-              className="mb-2 p-2 border rounded text-black font-montserrat"
+              className="mb-4 p-2 border rounded text-black font-montserrat"
             />
-            <label className="mb-1 font-bold">ID Instalación</label>
+            <label className="mb-1 font-montserrat">ID Instalación</label>
             <input
-              type="number"
+              type="text"
               name="instalacionId"
               placeholder="ID Instalación"
               value={formState.instalacionId}
               onChange={handleChange}
-              className="mb-2 p-2 border rounded text-black font-montserrat"
+              className="mb-4 p-2 border rounded text-black font-montserrat"
             />
           </>
         );
+      default:
+        return null;
     }
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 ${isOpen ? '' : 'hidden'}`}>
       <div className="bg-contenedor p-6 rounded shadow-md w-1/3">
         <h2 className="text-xl font-bold mb-5 mt-5">Crear {entityType}</h2>
         <form onSubmit={handleSubmit}>

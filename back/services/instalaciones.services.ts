@@ -1,4 +1,3 @@
-// instalaciones.services.ts
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -34,8 +33,8 @@ const createInstalacion = async (nombre: string, tipoInstalacion: string, edific
       data: {
         nombre,
         tipoInstalacion,
-        edificioId,
-        cliente, // Cambiar propietarioId por cliente
+        edificioId, // Ensure this is an integer
+        cliente,
       },
     });
     return newInstalacion;
@@ -53,8 +52,8 @@ const updateInstalacion = async (id: number, nombre: string, tipoInstalacion: st
       data: {
         nombre,
         tipoInstalacion,
-        edificioId,
-        cliente, // Cambiar propietarioId por cliente
+        edificioId, // Ensure this is an integer
+        cliente,
       },
     });
     return updatedInstalacion;

@@ -1,4 +1,3 @@
-// controller.api.instalaciones.ts
 import { Request, Response } from 'express';
 import * as instalacionesService from '../../services/instalaciones.services';
 
@@ -29,7 +28,12 @@ const getInstalacionById = async (req: Request, res: Response) => {
 const createInstalacion = async (req: Request, res: Response) => {
   const { nombre, tipoInstalacion, edificioId, cliente } = req.body; // Cambiar propietarioId por cliente
   try {
-    const newInstalacion = await instalacionesService.createInstalacion(nombre, tipoInstalacion, edificioId, cliente); // Cambiar propietarioId por cliente
+    const newInstalacion = await instalacionesService.createInstalacion(
+      nombre, 
+      tipoInstalacion, 
+      parseInt(edificioId), // Parse edificioId to an integer
+      cliente
+    ); 
     res.status(201).json(newInstalacion);
   } catch (error) {
     console.error('Error al crear la instalación:', error);
@@ -41,7 +45,13 @@ const updateInstalacion = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { nombre, tipoInstalacion, edificioId, cliente } = req.body; // Cambiar propietarioId por cliente
   try {
-    const updatedInstalacion = await instalacionesService.updateInstalacion(parseInt(id), nombre, tipoInstalacion, edificioId, cliente); // Cambiar propietarioId por cliente
+    const updatedInstalacion = await instalacionesService.updateInstalacion(
+      parseInt(id), 
+      nombre, 
+      tipoInstalacion, 
+      parseInt(edificioId), // Parse edificioId to an integer
+      cliente
+    );
     res.json(updatedInstalacion);
   } catch (error) {
     console.error('Error al actualizar la instalación:', error);
