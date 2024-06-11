@@ -1,3 +1,4 @@
+// routes/api.instalaciones.ts
 import { Router } from 'express';
 import * as controllers from '../controllers/controller.api.instalaciones';
 
