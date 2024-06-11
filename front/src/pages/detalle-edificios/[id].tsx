@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link'
+import Link from 'next/link';
 import NavPanel from '../../components/NavPanel';
 import MainH1 from '../../components/MainH1';
 import MainH2 from '../../components/MainH2';
@@ -137,7 +137,7 @@ const DetalleEdificio = () => {
                       <p className='bg-white text-black text-center rounded-lg w-[100px] mt-1'>{instalacion.tipoInstalacion}</p>
                     </div>
                     <div className='mt-7'>
-                      <Link href={`/detalle/${instalacion.id}`} passHref>
+                      <Link href={`/detalle-instalaciones/${instalacion.id}`} passHref>
                         <button className='bg-black text-white p-1 rounded-lg mr-2'>Ver más</button>
                       </Link>
                       <button onClick={() => handleEditClick(instalacion)} className='bg-blue-500 text-white p-1 rounded-lg mr-2'>Editar</button>

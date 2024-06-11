@@ -116,7 +116,7 @@ const Index = () => {
               onClick={() => setIsCreateModalOpen(true)}
               className="bg-boton p-2 text-white font-montserrat text-center rounded-lg"
             >
-              Crear Edificio
+              Crear edificio
             </button>
           </div>
           <div className='mt-10'>
@@ -138,7 +138,7 @@ const Index = () => {
                     {edificio.nombre.charAt(0).toLocaleUpperCase() + edificio.nombre.slice(1)}
                   </h2>
                   <div className='font-montserrat mt-7'>
-                    <Link href={`/detalle/${edificio.id}`} passHref>
+                    <Link href={`/detalle-edificios/${edificio.id}`} passHref>
                       <button className='bg-black text-white p-1 rounded-lg mr-2'>Ver más</button>
                     </Link>
                     <button 
