@@ -15,7 +15,7 @@ const DetalleInstalacion = () => {
   const [dispositivos, setDispositivos] = useState([]);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [dispositivo, setDispositivo] = useState(null); // Definir el variable dispositivo
+  const [dispositivo, setDispositivo] = useState(null);
 
   useEffect(() => {
     if (id) {
@@ -36,6 +36,10 @@ const DetalleInstalacion = () => {
   };
 
   const handleDeleteClick = (dispositivo: any) => {
+    if (!dispositivo.id) {
+      console.error('Error al eliminar dispositivo: ID no válido');
+      return;
+    }
     fetch(`http://localhost:2024/api/dispositivos/${dispositivo.id}`, { method: 'DELETE' })
       .then(() => {
         setDispositivos(dispositivos.filter(i => i.id !== dispositivo.id));
@@ -45,7 +49,7 @@ const DetalleInstalacion = () => {
 
   const handleEditClick = (dispositivo: any) => {
     setIsEditModalOpen(true);
-    setDispositivo(dispositivo); // Definir el variable dispositivo
+    setDispositivo(dispositivo);
   };
 
   const handleEdit = (dispositivo: any) => {
@@ -62,6 +66,26 @@ const DetalleInstalacion = () => {
         setIsEditModalOpen(false);
       })
       .catch(error => console.error('Error al editar dispositivo:', error));
+  };
+
+  const handleCreate = (dispositivo) => {
+    if (!dispositivo.codigoQR || !dispositivo.instalacionId) {
+      console.error('Error al crear dispositivo: campos obligatorios no llenados');
+      return;
+    }
+    fetch('http://localhost:2024/api/dispositivos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dispositivo),
+    })
+      .then(response => response.json())
+      .then(data => {
+        setDispositivos([...dispositivos, data]);
+        setIsCreateModalOpen(false);
+      })
+      .catch(error => console.error('Error al crear dispositivo:', error));
   };
 
   if (!instalacion) {
@@ -82,55 +106,41 @@ const DetalleInstalacion = () => {
           </button>
         </div>
         <div className="mt-7">
-  <MainH2 title="Dispositivos" />
-  {dispositivos.length === 0 ? (
-    <p className="font-montserrat text-red-500">No hay dispositivos asociados a esta instalación.</p>
-  ) : (
-    <ul>
-      {dispositivos.map((dispositivo, index) => (
-        <li key={dispositivo.id} className="bg-contenedor shadow-md radius-contenedor p-5 mb-6 mt-4 h-auto">
-          <div className="font-montserrat">
-            <p className="font-semibold text-xl">{dispositivo.nombre}</p>
-            <p className="bg-white text-black text-center rounded-lg w-[100px] mt-1">{dispositivo.descripcion}</p>
-          </div>
-          <div className="mt-7">
-            <button
-              onClick={() => handleEditClick(dispositivo)}
-              className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
-            >
-              Editar
-            </button>
-            <button
-              onClick={() => handleDeleteClick(dispositivo)}
-              className="bg-red-500 text-white px-4 py-2 rounded"
-            >
-              Eliminar
-            </button>
-          </div>
-        </li>
-      ))}
-    </ul>
-  )}
-</div>
+          <MainH2 title="Dispositivos" />
+          {dispositivos.length === 0 ? (
+            <p className="font-montserrat text-red-500">No hay dispositivos asociados a esta instalación.</p>
+          ) : (
+            <ul>
+              {dispositivos.map((dispositivo, index) => (
+                <li key={dispositivo.id} className="bg-contenedor shadow-md radius-contenedor p-5 mb-6 mt-4 h-auto">
+                  <div className="font-montserrat">
+                    <p className="font-semibold text-xl">{dispositivo.nombre}</p>
+                    <p className="bg-white text-black text-center rounded-lg w-[100px] mt-1">{dispositivo.descripcion}</p>
+                  </div>
+                  <div className="mt-7">
+                    <button
+                      onClick={() => handleEditClick(dispositivo)}
+                      className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      onClick={() => handleDeleteClick(dispositivo)}
+                      className="bg-red-500 text-white px-4 py-2 rounded"
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </section>
       <CreateModal
         isOpen={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
-        onCreate={(dispositivo) => {
-          fetch('http://localhost:2024/api/dispositivos', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(dispositivo),
-          })
-            .then(response => response.json())
-            .then(data => {
-              setDispositivos([...dispositivos, data]);
-              setIsCreateModalOpen(false);
-            })
-            .catch(error => console.error('Error al crear dispositivo:', error));
-        }}
+        onCreate={handleCreate}
         entityType="Dispositivo"
       />
       <EditModal
