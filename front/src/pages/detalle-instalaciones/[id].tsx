@@ -6,7 +6,7 @@ import MainH1 from '../../components/MainH1';
 import MainH2 from '../../components/MainH2';
 import CreateModal from '../../components/CreateModal';
 import EditModal from '../../components/EditModal';
-import DeleteModal from '../../components/DeleteModal';
+import DeleteModal from '../../components/DeleteModal'; // Importa el componente DeleteModal
 
 const DetalleInstalacion = () => {
   const router = useRouter();
@@ -15,6 +15,7 @@ const DetalleInstalacion = () => {
   const [dispositivos, setDispositivos] = useState([]);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // Estado para controlar la apertura del DeleteModal
   const [dispositivo, setDispositivo] = useState(null);
 
   useEffect(() => {
@@ -36,15 +37,8 @@ const DetalleInstalacion = () => {
   };
 
   const handleDeleteClick = (dispositivo: any) => {
-    if (!dispositivo.id) {
-      console.error('Error al eliminar dispositivo: ID no válido');
-      return;
-    }
-    fetch(`http://localhost:2024/api/dispositivos/${dispositivo.id}`, { method: 'DELETE' })
-      .then(() => {
-        setDispositivos(dispositivos.filter(i => i.id !== dispositivo.id));
-      })
-      .catch(error => console.error('Error al eliminar dispositivo:', error));
+    setIsDeleteModalOpen(true); // Abre el DeleteModal al hacer clic en eliminar
+    setDispositivo(dispositivo); // Establece el dispositivo seleccionado
   };
 
   const handleEditClick = (dispositivo: any) => {
@@ -86,6 +80,19 @@ const DetalleInstalacion = () => {
         setIsCreateModalOpen(false);
       })
       .catch(error => console.error('Error al crear dispositivo:', error));
+  };
+
+  const handleConfirmDelete = () => {
+    if (!dispositivo.id) {
+      console.error('Error al eliminar dispositivo: ID no válido');
+      return;
+    }
+    fetch(`http://localhost:2024/api/dispositivos/${dispositivo.id}`, { method: 'DELETE' })
+      .then(() => {
+        setDispositivos(dispositivos.filter(i => i.id !== dispositivo.id));
+        setIsDeleteModalOpen(false); // Cierra el DeleteModal después de eliminar el dispositivo
+      })
+      .catch(error => console.error('Error al eliminar dispositivo:', error));
   };
 
   if (!instalacion) {
@@ -151,10 +158,10 @@ const DetalleInstalacion = () => {
         entityType="Dispositivo"
       />
       <DeleteModal
-        isOpen={false}
+        isOpen={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
-        onConfirm={() => {}}
-        itemName=""
+        onConfirm={handleConfirmDelete}
+        itemName={dispositivo?.nombre || ''}
       />
     </main>
   );
