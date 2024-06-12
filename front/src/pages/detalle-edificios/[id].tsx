@@ -112,7 +112,7 @@ const DetalleEdificio = () => {
       <NavPanel />
       <section className='pl-14 mt-8 font-montserrat'>
         <MainH1 title={nombreCapitalizado} />
-        <address className='mt-2 pl-1'>{edificio.direccion}</address>
+        <address className='mt-2 pl-1 text-white'>{edificio.direccion}</address>
         <div className='mt-7'>
           <button
             className="bg-boton p-2 text-white font-montserrat text-center rounded-lg"
@@ -133,7 +133,7 @@ const DetalleEdificio = () => {
                 {instalaciones.map(instalacion => (
                   <li key={instalacion.id} className='bg-contenedor shadow-md radius-contenedor p-5 mb-6 mt-4 h-auto w-[700px]'>
                     <div className='font-montserrat'>
-                      <p className='font-semibold text-xl'>{instalacion.nombre}</p>
+                      <p className='font-semibold text-xl text-white'>{instalacion.nombre}</p>
                       <p className='bg-white text-black text-center rounded-lg w-[100px] mt-1'>{instalacion.tipoInstalacion}</p>
                     </div>
                     <div className='mt-7'>

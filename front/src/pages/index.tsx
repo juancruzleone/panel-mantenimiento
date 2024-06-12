@@ -134,7 +134,7 @@ const Index = () => {
             <div className='mt-20'>
               {filteredEdificios.map(edificio => (
                 <div key={edificio.id} className='bg-contenedor shadow-md radius-contenedor p-6 mb-6'>
-                  <h2 className='text-xl font-bold mb-2'>
+                  <h2 className='text-xl font-bold mb-2 text-white'>
                     {edificio.nombre.charAt(0).toLocaleUpperCase() + edificio.nombre.slice(1)}
                   </h2>
                   <div className='font-montserrat mt-7'>

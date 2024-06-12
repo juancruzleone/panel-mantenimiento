@@ -5,7 +5,7 @@ type MainH1Props = {
 const MainH1 = ({ title }: MainH1Props) => {
     return (
         <>
-            <h1 className="font-montserrat font-bold text-5xl pt-24">{title}</h1>
+            <h1 className="font-montserrat font-bold text-5xl pt-24 text-white">{title}</h1>
         </>
     );
 }

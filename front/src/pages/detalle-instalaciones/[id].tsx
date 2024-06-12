@@ -114,7 +114,7 @@ const DetalleInstalacion = () => {
               {dispositivos.map((dispositivo, index) => (
                 <li key={dispositivo.id} className="bg-contenedor shadow-md radius-contenedor p-5 mb-6 mt-4 h-auto">
                   <div className="font-montserrat">
-                    <p className="font-semibold text-xl">{dispositivo.nombre}</p>
+                    <p className="font-semibold text-xl text-white">{dispositivo.nombre}</p>
                     <p className="bg-white text-black text-center rounded-lg w-[100px] mt-1">{dispositivo.descripcion}</p>
                   </div>
                   <div className="mt-7">
