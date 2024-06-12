@@ -109,7 +109,15 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
       case 'Edificio':
         return (
           <>
-            <label className="mb-1 font-montserrat">Nombre</label>
+            <label className="mb-1 font-montserrat text-white">ID</label>
+            <input
+              type="text"
+              name="id"
+              value={(formState as Edificio).id.toString()}
+              disabled
+              className="mb-4 p-2 border rounded text-white font-montserrat"
+            />
+            <label className="mb-1 font-montserrat text-white">Nombre</label>
             <input
               type="text"
               name="nombre"
@@ -118,7 +126,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
             />
-            <label className="mb-1 font-montserrat">Dirección</label>
+            <label className="mb-1 font-montserrat text-white">Dirección</label>
             <input
               type="text"
               name="direccion"
@@ -127,7 +135,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
             />
-            <label className="mb-1 font-montserrat">Código Postal</label>
+            <label className="mb-1 font-montserrat text-white">Código Postal</label>
             <input
               type="text"
               name="codigoPostal"
@@ -136,7 +144,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
             />
-            <label className="mb-1 font-montserrat">Ciudad</label>
+            <label className="mb-1 font-montserrat text-white">Ciudad</label>
             <input
               type="text"
               name="ciudad"
@@ -145,7 +153,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
             />
-            <label className="mb-1 font-montserrat">Provincia</label>
+            <label className="mb-1 font-montserrat text-white">Provincia</label>
             <input
               type="text"
               name="provincia"
@@ -159,7 +167,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
       case 'Instalacion':
         return (
           <>
-            <label className="mb-1 font-montserrat">Nombre</label>
+            <label className="mb-1 font-montserrat text-white">Nombre</label>
             <input
               type="text"
               name="nombre"
@@ -168,7 +176,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
             />
-            <label className="mb-1 font-montserrat">Tipo Instalación</label>
+            <label className="mb-1 font-montserrat text-white">Tipo Instalación</label>
             <input
               type="text"
               name="tipoInstalacion"
@@ -177,16 +185,15 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
             />
-            <label className="mb-1 font-montserrat">ID Edificio</label>
+            <label className="mb-1 font-montserrat text-white">ID Edificio</label>
             <input
               type="text"
               name="edificioId"
-              placeholder="ID Edificio"
               value={(formState as Instalacion).edificioId.toString()}
-              onChange={handleChange}
-              className="mb-4 p-2 border rounded text-black font-montserrat"
+              disabled
+              className="mb-4 p-2 border rounded text-gray-500 font-montserrat"
             />
-            <label className="mb-1 font-montserrat">Cliente</label>
+            <label className="mb-1 font-montserrat text-white">Cliente</label>
             <input
               type="text"
               name="cliente"
@@ -200,7 +207,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
       case 'Dispositivo':
         return (
           <>
-            <label className="mb-1 font-montserrat">Nombre</label>
+            <label className="mb-1 font-montserrat text-white">Nombre</label>
             <input
               type="text"
               name="nombre"
@@ -209,7 +216,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
             />
-            <label className="mb-1 font-montserrat">Descripción</label>
+            <label className="mb-1 font-montserrat text-white">Descripción</label>
             <input
               type="text"
               name="descripcion"
@@ -218,7 +225,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
             />
-            <label className="mb-1 font-montserrat">Código QR</label>
+            <label className="mb-1 font-montserrat text-white">Código QR</label>
             <input
               type="text"
               name="codigoQR"
@@ -227,14 +234,13 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
             />
-            <label className="mb-1 font-montserrat">ID Instalación</label>
+            <label className="mb-1 font-montserrat text-white">ID Instalación</label>
             <input
               type="text"
               name="instalacionId"
-              placeholder="ID Instalación"
               value={(formState as Dispositivo).instalacionId.toString()}
-              onChange={handleChange}
-              className="mb-4 p-2 border rounded text-black font-montserrat"
+              disabled
+              className="mb-4 p-2 border rounded text-gray-500 font-montserrat"
             />
           </>
         );
@@ -243,26 +249,25 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
     }
   };
 
-  return (
-    <div className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 ${isOpen ? '' : 'hidden'}`}>
-      <div className="bg-contenedor p-6 rounded shadow-md w-1/3">
-        <h2 className="text-xl font-bold mb-5 mt-5">Editar {entityType}</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="flex flex-col">
-            {renderFields()}
-          </div>
+  return isOpen ? (
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-100 bg-opacity-50 z-50">
+      <div className="bg-contenedor p-6 rounded shadow-md w-full max-w-md">
+        <h2 className="text-xl font-bold mb-5 mt-5 text-white">Editar {entityType}</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col">
+          {renderFields()}
           <div className="flex justify-end mt-4">
             <button
               type="button"
-              className="bg-gray-500 text-white px-4 py-2 rounded mr-2"
               onClick={onClose}
+              className="px-4 py-2 mr-2 bg-red-500 text-white rounded hover:bg-red-700"
             >
               Cancelar
             </button>
             <button
-              type="submit"
-              className={`px-4 py-2 rounded ${isFormValid ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
+              type={'submit'}
               disabled={!isFormValid}
+              onClick={handleSubmit}
+              className={`px-4 py-2 rounded ${isFormValid ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-500 cursor-notallowed'}`}
             >
               Guardar
             </button>
@@ -270,7 +275,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
         </form>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default EditModal;

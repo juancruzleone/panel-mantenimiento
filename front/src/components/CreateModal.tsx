@@ -82,7 +82,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
         return (
           <div>
             <div className="flex flex-col mb-4">
-              <label className="mb-1 font-montserrat">Nombre</label>
+              <label className="mb-1 font-montserrat text-white">Nombre</label>
               <input
                 type="text"
                 name="nombre"
@@ -93,7 +93,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               />
             </div>
             <div className="flex flex-col mb-4">
-              <label className="mb-1 font-montserrat">Dirección</label>
+              <label className="mb-1 font-montserrat text-white">Dirección</label>
               <input
                 type="text"
                 name="direccion"
@@ -104,7 +104,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               />
             </div>
             <div className="flex flex-col mb-4">
-              <label className="mb-1 font-montserrat">Código Postal</label>
+              <label className="mb-1 font-montserrat text-white">Código Postal</label>
               <input
                 type="text"
                 name="codigoPostal"
@@ -115,7 +115,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               />
             </div>
             <div className="flex flex-col mb-4">
-              <label className="mb-1 font-montserrat">Ciudad</label>
+              <label className="mb-1 font-montserrat text-white">Ciudad</label>
               <input
                 type="text"
                 name="ciudad"
@@ -126,7 +126,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               />
             </div>
             <div className="flex flex-col mb-4">
-              <label className="mb-1 font-montserrat">Provincia</label>
+              <label className="mb-1 font-montserrat text-white">Provincia</label>
               <input
                 type="text"
                 name="provincia"
@@ -142,7 +142,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
         return (
           <div>
             <div className="flex flex-col mb-4">
-              <label className="mb-1 font-montserrat">Nombre</label>
+              <label className="mb-1 font-montserrat text-white">Nombre</label>
               <input
                 type="text"
                 name="nombre"
@@ -153,7 +153,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               />
             </div>
             <div className="flex flex-col mb-4">
-              <label className="mb-1 font-montserrat">Tipo Instalación</label>
+              <label className="mb-1 font-montserrat text-white">Tipo Instalación</label>
               <input
                 type="text"
                 name="tipoInstalacion"
@@ -164,7 +164,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               />
             </div>
             <div className="flex flex-col mb-4">
-              <label className="mb-1 font-montserrat">ID Edificio</label>
+              <label className="mb-1 font-montserrat text-white">ID Edificio</label>
               <input
                 type={"text"}
                 name={"edificioId"}
@@ -175,7 +175,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               />
             </div>
             <div className="flex flex-col mb-4">
-              <label className="mb-1 font-bold">Nombre del cliente</label>
+              <label className="mb-1 font-bold text-white">Nombre del cliente</label>
               <input
                 type={"text"}
                 name={"cliente"}
@@ -191,7 +191,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
         return (
           <div>
             <div className="flex flex-col mb-4">
-              <label className="mb-1 font-montserrat">Nombre</label>
+              <label className="mb-1 font-montserrat text-white">Nombre</label>
               <input
                   type={"text"}
                   name={"nombre"}
@@ -202,7 +202,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               />
             </div>
             <div className="flex flex-col mb-4">
-              <label className="mb-1 font-montserrat">Descripción</label>
+              <label className="mb-1 font-montserrat text-white">Descripción</label>
               <input
                   type={"text"}
                   name={"descripcion"}
@@ -213,7 +213,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               />
             </div>
             <div className="flex flex-col mb-4">
-              <label className="mb-1 font-montserrat">Código QR</label>
+              <label className="mb-1 font-montserrat text-white">Código QR</label>
               <input
                   type={"text"}
                   name={"codigoQR"}
@@ -224,14 +224,14 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               />
             </div>
             <div className="flex flex-col mb-4">
-              <label className="mb-1 font-montserrat">ID Instalación</label>
+              <label className="mb-1 font-montserrat text-white">ID Instalación</label>
               <input
                   type={"text"}
                   name={"instalacionId"}
                   disabled
                   value={formState.instalacionId}
                   onChange={handleChange}
-                  className={"p-2 border rounded text-black font-montserrat"}
+                  className={"p-2 border rounded text-white font-montserrat"}
               />
             </div>
           </div>
@@ -249,7 +249,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
         className={`bg-contenedor p-6 rounded shadow-md w-full max-w-md`}
       >
         <h2
-          className={`text-xl font-bold mb-5 mt-5`}
+          className={`text-xl font-bold mb-5 mt-5 text-white`}
         >
           Crear {entityType}
         </h2>
@@ -259,7 +259,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
         >
           <button
           type={'button'}
-          className={'bg-gray-500 text-white px-4 py-2 rounded mr-2'}
+          className={'bg-red-500 text-white px-4 py-2 rounded mr-2'}
           onClick={onClose}
         >
           Cancelar
