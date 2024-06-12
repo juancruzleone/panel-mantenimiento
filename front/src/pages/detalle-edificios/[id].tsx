@@ -110,7 +110,7 @@ const DetalleEdificio = () => {
   return (
     <main className='flex'>
       <NavPanel />
-      <section className='pl-8 font-montserrat'>
+      <section className='pl-14 mt-8 font-montserrat'>
         <MainH1 title={nombreCapitalizado} />
         <address className='mt-2 pl-1'>{edificio.direccion}</address>
         <div className='mt-7'>
@@ -131,7 +131,7 @@ const DetalleEdificio = () => {
             ) : (
               <ul>
                 {instalaciones.map(instalacion => (
-                  <li key={instalacion.id} className='bg-contenedor shadow-md radius-contenedor p-5 mb-6 mt-4 h-auto'>
+                  <li key={instalacion.id} className='bg-contenedor shadow-md radius-contenedor p-5 mb-6 mt-4 h-auto w-[700px]'>
                     <div className='font-montserrat'>
                       <p className='font-semibold text-xl'>{instalacion.nombre}</p>
                       <p className='bg-white text-black text-center rounded-lg w-[100px] mt-1'>{instalacion.tipoInstalacion}</p>

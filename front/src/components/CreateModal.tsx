@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 interface CreateModalProps {
   isOpen: boolean;
@@ -14,23 +15,62 @@ const initialFormState = {
 };
 
 const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, entityType }) => {
-  const [formState, setFormState] = useState(initialFormState[entityType]);
+  const router = useRouter();
+  const idFromQuery = parseInt(router.query.id as string, 10);
+
+  const [formState, setFormState] = useState({
+    nombre: '',
+    direccion: '',
+    codigoPostal: '',
+    ciudad: '',
+    provincia: '',
+    tipoInstalacion: '',
+    cliente: '',
+    edificioId: isNaN(idFromQuery) ? '' : idFromQuery,
+    instalacionId: isNaN(idFromQuery) ? '' : idFromQuery,
+    descripcion: '',
+    codigoQR: '',
+  });
+
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
-    setFormState(initialFormState[entityType]);
-  }, [entityType, isOpen]);
+    setFormState({
+      nombre: '',
+      direccion: '',
+      codigoPostal: '',
+      ciudad: '',
+      provincia: '',
+      tipoInstalacion: '',
+      cliente: '',
+      edificioId: isNaN(idFromQuery) ? '' : idFromQuery,
+      instalacionId: isNaN(idFromQuery) ? '' : idFromQuery,
+      descripcion: '',
+      codigoQR: '',
+    });
+  }, [entityType, isOpen, idFromQuery]);
 
   useEffect(() => {
-    const isValid = Object.values(formState).every(value => value !== '');
+    const isValid = Object.entries(formState).every(([key, value]) => {
+      if (entityType === 'Instalacion' && key === 'edificioId') {
+        return true;
+      }
+      if (entityType === 'Dispositivo' && key === 'instalacionId') {
+        return true;
+      }
+      return value !== '';
+    });
     setIsFormValid(isValid);
-  }, [formState]);
+  }, [formState, entityType]);
 
   if (!isOpen) return null;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormState(prevState => ({ ...prevState, [name]: value }));
+    setFormState(prevState => ({
+      ...prevState,
+      [name]: name === 'edificioId' || name === 'instalacionId' ? parseInt(value, 10) : value
+    }));
   };
 
   const handleSubmit = (e: FormEvent) => {
@@ -121,7 +161,8 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               placeholder="Escribe el id del edificio"
               value={formState.edificioId}
               onChange={handleChange}
-              className="mb-2 p-2 border rounded text-black font-montserrat"
+              className="mb-2 p-2 border rounded text-black font-montserrat text-white"
+              disabled // Bloquear el campo de ID
             />
             <label className="mb-1 font-bold">Nombre del cliente</label>
             <input
@@ -172,6 +213,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               value={formState.instalacionId}
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
+              disabled // Bloquear el campo de ID
             />
           </>
         );

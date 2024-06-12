@@ -120,13 +120,13 @@ const DetalleInstalacion = () => {
                   <div className="mt-7">
                     <button
                       onClick={() => handleEditClick(dispositivo)}
-                      className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
+                      className="bg-blue-500 text-white p-1 rounded-lg mr-2"
                     >
                       Editar
                     </button>
                     <button
                       onClick={() => handleDeleteClick(dispositivo)}
-                      className="bg-red-500 text-white px-4 py-2 rounded"
+                      className="bg-red-500 text-white p-1 rounded-lg"
                     >
                       Eliminar
                     </button>
