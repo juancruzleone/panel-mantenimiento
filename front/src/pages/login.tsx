@@ -1,5 +1,3 @@
-// pages/login.tsx
-
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { FiEye, FiEyeOff } from 'react-icons/fi'; // Importamos los íconos de ojo y ojo cerrado
@@ -34,8 +32,6 @@ const Login = () => {
             }
         } catch (err) {
             setError('Error al iniciar sesión. Inténtalo de nuevo más tarde.');
-        } finally {
-            setIsAnimating(false);
         }
     };
 
@@ -46,7 +42,7 @@ const Login = () => {
     return (
         <>
             <section className='relative flex h-screen'>
-                <div className={`relative z-10 flex flex-col justify-center items-center w-[600px] bg-login radius-login ${isAnimating ? 'animate-login' : ''}`}>
+                <div className={`relative z-10 flex flex-col justify-center items-center w-[600px] bg-login radius-login transition-all duration-[20000ms] ease-in-out ${isAnimating ? 'w-full h-full rounded-none' : ''}`}>
                     <MainH1 title='Inicia sesión' className='titulo-login mb-12'/> {/* Utilizamos el componente MainH1 */}
                     <div className="flex flex-col w-[350px] h-auto">
                         <label htmlFor="username" className="text-xl text-white font-montserrat">Usuario</label>

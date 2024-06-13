@@ -108,22 +108,3 @@ body{
   color: #105B52;
 }
 
-
-.animate-login {
-  animation: expand 0.01s forwards; /* Cambiamos el tiempo de duración a 0.5 segundos */
-}
-
-@keyframes expand {
-  0% {
-      width: 600px;
-      height: auto;
-      border-top-right-radius: 20px;
-      border-bottom-right-radius: 20px;
-  }
-  100% {
-      width: 100%;
-      height: 100vh;
-      border-radius: 0;
-  }
-}
-
