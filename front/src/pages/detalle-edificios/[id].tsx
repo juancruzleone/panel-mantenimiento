@@ -110,7 +110,7 @@ const DetalleEdificio = () => {
   return (
     <main className='flex'>
       <NavPanel />
-      <section className='pl-14 mt-8 font-montserrat'>
+      <section className='pl-14 mt-[100px] font-montserrat'>
         <MainH1 title={nombreCapitalizado} />
         <address className='mt-2 pl-1 text-white'>{edificio.direccion}</address>
         <div className='mt-7'>

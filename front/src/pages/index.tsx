@@ -119,12 +119,12 @@ const Index = () => {
     <>
       <main className='flex'>
         <NavPanel />
-        <div className='flex-grow p-6'>
+        <div className='flex-grow p-6 mt-[100px]'>
           <MainH1 title="Edificios" />
           <div className='mt-7'>
             <button
               onClick={() => setIsCreateModalOpen(true)}
-              className="bg-boton p-2 text-white font-montserrat text-center rounded-lg"
+              className="bg-boton p-2 text-black font-montserrat text-center rounded-lg"
             >
               Crear edificio
             </button>

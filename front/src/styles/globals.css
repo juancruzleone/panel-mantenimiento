@@ -97,8 +97,9 @@ body{
   border-bottom-right-radius: 50px;
 }
 
-.bg-boton{
-  background-color: #FFB800;
+.bg-boton {
+  background-color: #333333; /* Color de fondo oscuro */
+  color: #ffffff; /* Color de texto blanco */
 }
 
 .titulo-login{
