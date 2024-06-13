@@ -5,6 +5,7 @@ import Link from 'next/link';
 import DeleteModal from '../components/DeleteModal';
 import CreateModal from '../components/CreateModal';
 import EditModal from '../components/EditModal';
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '../components/ui/pagination';
 
 interface Edificio {
   id: number;
@@ -23,6 +24,8 @@ const Index = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [currentEdificio, setCurrentEdificio] = useState<Edificio | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(4); // Cambia este valor según tus necesidades
 
   useEffect(() => {
     fetch('http://localhost:2024/api/edificios')
@@ -39,6 +42,7 @@ const Index = () => {
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
+    setCurrentPage(1); // Reiniciar a la primera página al cambiar el término de búsqueda
   };
 
   const handleDeleteClick = (edificio: Edificio) => {
@@ -105,6 +109,12 @@ const Index = () => {
     edificio.direccion.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentEdificios = filteredEdificios.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
   return (
     <>
       <main className='flex'>
@@ -132,7 +142,7 @@ const Index = () => {
             <p className='mt-10'>Cargando...</p>
           ) : (
             <div className='mt-20'>
-              {filteredEdificios.map(edificio => (
+              {currentEdificios.map(edificio => (
                 <div key={edificio.id} className='bg-contenedor shadow-md radius-contenedor p-6 mb-6'>
                   <h2 className='text-xl font-bold mb-2 text-white'>
                     {edificio.nombre.charAt(0).toLocaleUpperCase() + edificio.nombre.slice(1)}
@@ -156,6 +166,29 @@ const Index = () => {
                   </div>
                 </div>
               ))}
+              <Pagination className="mt-5" aria-label="Paginación">
+                <PaginationContent>
+                  <PaginationPrevious
+                    onClick={() => paginate(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className='bg-[#105B52] mr-2'
+                  />
+                  {Array.from({ length: Math.ceil(filteredEdificios.length / itemsPerPage) }, (_, index) => (
+                    <PaginationItem key={index}>
+                      <PaginationLink
+                        onClick={() => paginate(index + 1)}
+                        isActive={index + 1 === currentPage}
+                      >
+                        {index + 1}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
+                  <PaginationNext
+                    onClick={() => paginate(currentPage + 1)}
+                    disabled={currentPage === Math.ceil(filteredEdificios.length / itemsPerPage)}
+                  />
+                </PaginationContent>
+              </Pagination>
             </div>
           )}
         </div>
