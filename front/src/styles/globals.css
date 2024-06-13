@@ -110,7 +110,7 @@ body{
 
 
 .animate-login {
-  animation: expand 1s forwards;
+  animation: expand 0.01s forwards; /* Cambiamos el tiempo de duración a 0.5 segundos */
 }
 
 @keyframes expand {
@@ -126,3 +126,4 @@ body{
       border-radius: 0;
   }
 }
+
