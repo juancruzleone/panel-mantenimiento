@@ -109,19 +109,11 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
       case 'Edificio':
         return (
           <>
-            <label className="mb-1 font-montserrat text-white">ID</label>
-            <input
-              type="text"
-              name="id"
-              value={(formState as Edificio).id.toString()}
-              disabled
-              className="mb-4 p-2 border rounded text-white font-montserrat"
-            />
             <label className="mb-1 font-montserrat text-white">Nombre</label>
             <input
               type="text"
               name="nombre"
-              placeholder="Nombre"
+              placeholder="Escribe el nombre del edificio"
               value={(formState as Edificio).nombre}
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
@@ -130,7 +122,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
             <input
               type="text"
               name="direccion"
-              placeholder="Dirección"
+              placeholder="Escribe la dirección del edificio"
               value={(formState as Edificio).direccion}
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
@@ -139,7 +131,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
             <input
               type="text"
               name="codigoPostal"
-              placeholder="Código Postal"
+              placeholder="Escribe el código postal donde se encuentra"
               value={(formState as Edificio).codigoPostal}
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
@@ -148,7 +140,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
             <input
               type="text"
               name="ciudad"
-              placeholder="Ciudad"
+              placeholder="Escribe la ciudad donde se encuentra"
               value={(formState as Edificio).ciudad}
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
@@ -157,7 +149,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
             <input
               type="text"
               name="provincia"
-              placeholder="Provincia"
+              placeholder="Escribe la provincia donde se encuentra"
               value={(formState as Edificio).provincia}
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
@@ -171,7 +163,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
             <input
               type="text"
               name="nombre"
-              placeholder="Nombre"
+              placeholder="Escribe el nombre de la instalación"
               value={(formState as Instalacion).nombre}
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
@@ -180,8 +172,17 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
             <input
               type="text"
               name="tipoInstalacion"
-              placeholder="Tipo Instalación"
+              placeholder="Escribe el tipo de instalación"
               value={(formState as Instalacion).tipoInstalacion}
+              onChange={handleChange}
+              className="mb-4 p-2 border rounded text-black font-montserrat"
+            />
+            <label className="mb-1 font-montserrat text-white">Cliente</label>
+            <input
+              type="text"
+              name="cliente"
+              placeholder="Escribe el nombre del cliente"
+              value={(formState as Instalacion).cliente}
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
             />
@@ -191,16 +192,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
               name="edificioId"
               value={(formState as Instalacion).edificioId.toString()}
               disabled
-              className="mb-4 p-2 border rounded text-gray-500 font-montserrat"
-            />
-            <label className="mb-1 font-montserrat text-white">Cliente</label>
-            <input
-              type="text"
-              name="cliente"
-              placeholder="Cliente"
-              value={(formState as Instalacion).cliente}
-              onChange={handleChange}
-              className="mb-4 p-2 border rounded text-black font-montserrat"
+              className="mb-4 p-2 border rounded text-white font-montserrat"
             />
           </>
         );
@@ -211,7 +203,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
             <input
               type="text"
               name="nombre"
-              placeholder="Nombre"
+              placeholder="Escribe el nombre del dispositivo"
               value={(formState as Dispositivo).nombre}
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
@@ -220,7 +212,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
             <input
               type="text"
               name="descripcion"
-              placeholder="Descripción"
+              placeholder="Escribe la descripción del dispositivo"
               value={(formState as Dispositivo).descripcion}
               onChange={handleChange}
               className="mb-4 p-2 border rounded text-black font-montserrat"
@@ -240,7 +232,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onEdit, entity, 
               name="instalacionId"
               value={(formState as Dispositivo).instalacionId.toString()}
               disabled
-              className="mb-4 p-2 border rounded text-gray-500 font-montserrat"
+              className="mb-4 p-2 border rounded text-white font-montserrat"
             />
           </>
         );

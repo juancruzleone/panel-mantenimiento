@@ -86,7 +86,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               <input
                 type="text"
                 name="nombre"
-                placeholder="Nombre"
+                placeholder="Escribe el nombre del edificio"
                 value={formState.nombre}
                 onChange={handleChange}
                 className="p-2 border rounded text-black font-montserrat"
@@ -97,7 +97,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               <input
                 type="text"
                 name="direccion"
-                placeholder="Dirección"
+                placeholder="Escribe la dirección del edificio"
                 value={formState.direccion}
                 onChange={handleChange}
                 className="p-2 border rounded text-black font-montserrat"
@@ -108,7 +108,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               <input
                 type="text"
                 name="codigoPostal"
-                placeholder="Código Postal"
+                placeholder="Escribe el código postal donde se encuentra"
                 value={formState.codigoPostal}
                 onChange={handleChange}
                 className="p-2 border rounded text-black font-montserrat"
@@ -119,18 +119,18 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               <input
                 type="text"
                 name="ciudad"
-                placeholder="Ciudad"
+                placeholder="Escribe la ciudad donde se encuentra"
                 value={formState.ciudad}
                 onChange={handleChange}
                 className="p-2 border rounded text-black font-montserrat"
               />
             </div>
-            <div className="flex flex-col mb-4">
+            <div className="flex flex-col mb-6">
               <label className="mb-1 font-montserrat text-white">Provincia</label>
               <input
                 type="text"
                 name="provincia"
-                placeholder="Provincia"
+                placeholder="Escribe la provincia donde se encuentra"
                 value={formState.provincia}
                 onChange={handleChange}
                 className="p-2 border rounded text-black font-montserrat"
@@ -146,7 +146,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               <input
                 type="text"
                 name="nombre"
-                placeholder="Nombre"
+                placeholder="Escribe el nombre de la instalación"
                 value={formState.nombre}
                 onChange={handleChange}
                 className="p-2 border rounded text-black font-montserrat"
@@ -157,21 +157,10 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               <input
                 type="text"
                 name="tipoInstalacion"
-                placeholder="Tipo Instalación"
+                placeholder="Escribe el tipo de instalación"
                 value={formState.tipoInstalacion}
                 onChange={handleChange}
                 className="p-2 border rounded text-black font-montserrat"
-              />
-            </div>
-            <div className="flex flex-col mb-4">
-              <label className="mb-1 font-montserrat text-white">ID Edificio</label>
-              <input
-                type={"text"}
-                name={"edificioId"}
-                disabled
-                value={formState.edificioId}
-                onChange={handleChange}
-                className={"p-2 border rounded text-white font-montserrat"}
               />
             </div>
             <div className="flex flex-col mb-4">
@@ -185,6 +174,17 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
                 className={"p-2 border rounded text-black font-montserrat"}
               />
             </div>
+            <div className="flex flex-col mb-6">
+              <label className="mb-1 font-montserrat text-white">ID Edificio</label>
+              <input
+                type={"text"}
+                name={"edificioId"}
+                disabled
+                value={formState.edificioId}
+                onChange={handleChange}
+                className={"p-2 border rounded text-white font-montserrat"}
+              />
+            </div>
           </div>
         );
       case 'Dispositivo':
@@ -195,7 +195,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               <input
                   type={"text"}
                   name={"nombre"}
-                  placeholder={"Nombre"}
+                  placeholder="Escribe el nombre del dispositivo"
                   value={formState.nombre}
                   onChange={handleChange}
                   className={"p-2 border rounded text-black font-montserrat"}
@@ -206,7 +206,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
               <input
                   type={"text"}
                   name={"descripcion"}
-                  placeholder={"Descripción"}
+                  placeholder="Escribe la descripción del dispositivo"
                   value={formState.descripcion}
                   onChange={handleChange}
                   className={"p-2 border rounded text-black font-montserrat"}
@@ -223,7 +223,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose, onCreate, en
                   className={"p-2 border rounded text-black font-montserrat"}
               />
             </div>
-            <div className="flex flex-col mb-4">
+            <div className="flex flex-col mb-6">
               <label className="mb-1 font-montserrat text-white">ID Instalación</label>
               <input
                   type={"text"}
